@@ -48,22 +48,24 @@ namespace Platformer.Mechanics
         {
             if (!cooldown)
             {
+                if (player.audioSource && player.ouchAudio)
+                    player.audioSource.PlayOneShot(player.ouchAudio);
+                Debug.Log("decrement");
                 currentHP -= 1;
-                // StartCoroutine(healthCooldown());
+                StartCoroutine(healthCooldown());
             }
+            // if (currentHP == 1)
+            // {
+            //     player.collider2d = player.crouchCollider;
+            //     player.standCollider.enabled = false;
+            //     player.crouchCollider.enabled = true;
+            // }
             if (currentHP == 0)
             {
                 var ev = Schedule<HealthIsZero>();
                 ev.health = this;
             }
-            if (currentHP == 1)
-            {
-                player.big = false;
-                player.standCollider.enabled = false;
-                player.crouchCollider.enabled = true;
-                player.collider2d = player.crouchCollider;
-                player.Bounds = player.crouchCollider.bounds;
-            }
+
         }
 
         /// <summary>
@@ -82,9 +84,19 @@ namespace Platformer.Mechanics
 
         IEnumerator healthCooldown()
         {
-            cooldown = true;
-            yield return new WaitForSeconds(3);
-            cooldown = false;
+            if (!cooldown)
+            {
+                cooldown = true;
+                yield return new WaitForSeconds(3);
+                if (currentHP == 1)
+                {
+                    player.collider2d = player.crouchCollider;
+                    player.standCollider.enabled = false;
+                    player.crouchCollider.enabled = true;
+                }
+                cooldown = false;
+            }
+            
         }
     }
 }

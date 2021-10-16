@@ -108,7 +108,7 @@ namespace Platformer.Mechanics
                 jumpTakeOffSpeed = 30;
                 animator.SetBool("big", false);
             }
-            if (crouch)
+            if (crouch || !big)
             {
                 collider2d = crouchCollider;
             }

@@ -22,29 +22,31 @@ namespace Platformer.Gameplay
         {
             var willHurtEnemy = player.Bounds.min.y >= enemy.Bounds.max.y;
 
-            if (willHurtEnemy)
+            if (willHurtEnemy && enemy._collider.enabled == true)
             {
-                var enemyHealth = enemy.GetComponent<Health>();
-                if (enemyHealth != null)
-                {
-                    enemyHealth.Decrement();
-                    if (!enemyHealth.IsAlive)
-                    {
-                        Schedule<EnemyDeath>().enemy = enemy;
-                        player.Bounce(10);
-                    }
-                    else
-                    {
-                        player.Bounce(7);
-                    }
-                }
-                else
-                {
-                    Schedule<EnemyDeath>().enemy = enemy;
-                    player.Bounce(10);
-                }
+                // var enemyHealth = enemy.GetComponent<Health>();
+                // if (enemyHealth != null)
+                // {
+                //     enemyHealth.Decrement();
+                //     if (!enemyHealth.IsAlive)
+                //     {
+                //         Schedule<EnemyDeath>().enemy = enemy;
+                //         player.Bounce(10);
+                //     }
+                //     else
+                //     {
+                //         player.Bounce(7);
+                //     }
+                // }
+                // else
+                // {
+                //     Schedule<EnemyDeath>().enemy = enemy;
+                //     player.Bounce(10);
+                // }
+                Schedule<EnemyDeath>().enemy = enemy;
+                player.Bounce(15);
             }
-            else
+            else if (enemy._collider.enabled == true)
             {
                 if (player.GetComponent<Platformer.Mechanics.Health>().currentHP == 1)
                     Schedule<PlayerDeath>();

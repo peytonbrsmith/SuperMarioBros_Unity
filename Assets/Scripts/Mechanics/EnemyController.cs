@@ -33,17 +33,17 @@ namespace Platformer.Mechanics
             animator = GetComponent<Animator>();
         }
 
-        void OnCollisionEnter2D(Collision2D collision)
-        {
-            var player = collision.gameObject.GetComponent<PlayerController>();
-            if (player != null)
-            {
-                Debug.Log("Player hit");
-                var ev = Schedule<PlayerEnemyCollision>();
-                ev.player = player;
-                ev.enemy = this;
-            }
-        }
+        // void OnCollisionEnter2D(Collision2D collision)
+        // {
+        //     var player = collision.gameObject.GetComponent<PlayerController>();
+        //     if (player != null)
+        //     {
+        //         Debug.Log("Player hit");
+        //         var ev = Schedule<PlayerEnemyCollision>();
+        //         ev.player = player;
+        //         ev.enemy = this;
+        //     }
+        // }
 
         // void OnTriggerEnter2D(Collider2D collider)
         // {

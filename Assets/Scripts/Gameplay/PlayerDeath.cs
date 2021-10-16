@@ -27,8 +27,8 @@ namespace Platformer.Gameplay
                 player.move.x = 0;
                 player.move.y = 0;
                 player.controlEnabled = false;
-                if (player.audioSource && player.ouchAudio)
-                    player.audioSource.PlayOneShot(player.ouchAudio);
+                if (player.audioSource && player.respawnAudio)
+                    player.audioSource.PlayOneShot(player.respawnAudio);
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
                 player.Bounce(30);
