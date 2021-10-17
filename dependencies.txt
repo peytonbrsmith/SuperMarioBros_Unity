@@ -46,4 +46,4 @@ com.unity.modules.video@1.0.0
 com.unity.modules.vr@1.0.0
 com.unity.modules.wind@1.0.0
 com.unity.modules.xr@1.0.0
-Super Mario Bros Unity@0.6
+Super Mario Bros Unity@0.8
